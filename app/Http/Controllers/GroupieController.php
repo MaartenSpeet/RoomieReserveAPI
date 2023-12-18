@@ -26,11 +26,31 @@ class GroupieController extends Controller
 
     public function Store(Request $request)
     {
+        $groupie = new Groupie;
+        $groupie->name = $request->name;
 
+        return response()->json([
+            "message" => "Groupie Added."
+        ], 201);
     }
 
     public function Update(Request $request, $id)
     {
+        if(Groupie::where('id', $id)->exists())
+        {
+            $groupie = Groupie::find($id);
+            $groupie->name = is_null($request->name) ? $groupie->name : $request->name;
 
+            $groupie->save();
+            return response()->json([
+                "message" => "Groupie Updated."
+            ], 404);
+        }
+        else
+        {
+            return response()->json([
+                "message" => "Groupie Not Found."
+            ], 404);
+        }
     }
 }

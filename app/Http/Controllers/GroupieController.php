@@ -42,7 +42,7 @@ class GroupieController extends Controller
     {
         if(Item::where('id', $id)->exists())
         {
-            $item = Item::find($id);
+            $groupie = Groupie::find($id);
             $groupie->name = is_null($request->name) ? $groupie->name : $request->name;
 
             $groupie->save();

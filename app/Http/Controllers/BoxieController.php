@@ -9,7 +9,7 @@ class BoxieController extends Controller
 {
     public function Index()
     {
-        $boxies = Boxies::all();
+        $boxies = Boxie::all();
         return response()->json($boxies);
     }
 
@@ -31,7 +31,7 @@ class BoxieController extends Controller
 
     public function Update(Request $request, $id)
     {
-        if(Boxies::where('id', $id)->exists())
+        if(Boxie::where('id', $id)->exists())
         {
             $boxie = Boxie::find($id);
             $boxie->name = is_null($request->name) ? $boxie->name : $request->name;

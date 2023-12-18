@@ -23,18 +23,44 @@ class ItemController extends Controller
         else
         {
             return response()->json([
-                "message" => "User not found."
+                "message" => "Item(s) not found."
             ], 404);
         }
     }
 
     public function Store(Request $request)
     {
+        $item = new Item;
+        $item->name = $request->name;
+        $item->owner_id = $request->owner_id;
+        $item->boxie_id = $request->boxie_id;
+        $item->bestbefore = $request->bestbefore;
 
+        return response()->json([
+            "message" => "Item Added."
+        ], 201);
     }
 
     public function Update(Request $request, $id)
     {
+        if(Item::where('id', $id)->exists())
+        {
+            $item = Item::find($id);
+            $item->name = is_null($request->name) ? $item->name : $request->name;
+            $item->owner_id = is_null($request->owner_id) ? $user->owner_id : $request->owner_id;
+            $item->boxie_id = is_null($request->boxie_id) ? $user->boxie_id : $request->boxie_id;
+            $item->bestbefore = is_null($request->bestbefore) ? $user->bestbefore : $request->bestbefore;
 
+            $user->save();
+            return response()->json([
+                "message" => "Item Updated."
+            ], 404);
+        }
+        else
+        {
+            return response()->json([
+                "message" => "Item Not Found."
+            ], 404);
+        }
     }
 }

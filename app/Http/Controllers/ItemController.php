@@ -47,11 +47,11 @@ class ItemController extends Controller
         {
             $item = Item::find($id);
             $item->name = is_null($request->name) ? $item->name : $request->name;
-            $item->owner_id = is_null($request->owner_id) ? $user->owner_id : $request->owner_id;
-            $item->boxie_id = is_null($request->boxie_id) ? $user->boxie_id : $request->boxie_id;
-            $item->bestbefore = is_null($request->bestbefore) ? $user->bestbefore : $request->bestbefore;
+            $item->owner_id = is_null($request->owner_id) ? $item->owner_id : $request->owner_id;
+            $item->boxie_id = is_null($request->boxie_id) ? $item->boxie_id : $request->boxie_id;
+            $item->bestbefore = is_null($request->bestbefore) ? $item->bestbefore : $request->bestbefore;
 
-            $user->save();
+            $item->save();
             return response()->json([
                 "message" => "Item Updated."
             ], 404);

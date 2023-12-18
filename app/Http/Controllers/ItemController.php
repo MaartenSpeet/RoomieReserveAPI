@@ -15,10 +15,10 @@ class ItemController extends Controller
 
     public function Show($id)
     {
-        $item = Item::where('boxie_id', $id);
-        if(!empty($item))
+        $items = Item::where('boxie_id', $id)->get();
+        if(!empty($items))
         {
-            return response()->json($item);
+            return response()->json($items);
         }
         else
         {

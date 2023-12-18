@@ -3,19 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
-class ApiV1Controller extends Controller
+class UserController extends Controller
 {
-// User
-    public function IndexUser()
+    // User
+    public function Index()
     {
         $users = User::all();
         return response()->json($users);
     }
 
-    public function ShowUser($id)
+    public function Show($id)
     {
         $user = User::find($id);
         if(!empty($user))
@@ -30,7 +29,7 @@ class ApiV1Controller extends Controller
         }
     }
 
-    public function storeUser(Request $request)
+    public function Store(Request $request)
     {
         $user = new User;
         $user->name = $request->name;
@@ -41,7 +40,7 @@ class ApiV1Controller extends Controller
         ], 201);
     }
 
-    public function UpdateUser(Request $request, $id)
+    public function Update(Request $request, $id)
     {
         if(User::where('id', $id)->exists())
         {

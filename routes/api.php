@@ -3,7 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ApiV1Controller;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\GroupieController;
+use App\Http\Controllers\BoxieController;
+use App\Http\Controllers\ItemController;
 use Spatie\FlareClient\Api;
 
 /*
@@ -17,27 +20,28 @@ use Spatie\FlareClient\Api;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::controller(ApiV1Controller::class)->group(function () {
-    // Users
+Route::controller(UserController::class)->group(function () {
     Route::get('/v1/users/', 'indexUser');
     Route::get('/v1/users/{id}', 'showUser');
     Route::post('/v1/users/', 'storeUser');
     Route::put('/v1/users/{id}', 'updateUser');
-    // Groupies
+} );
+
+Route::controller(GroupieController::class)->group(function () {
     Route::get('/v1/groupies', 'indexGroupie');
     Route::get('/v1/groupies/{userid}', 'showGroupie');
     Route::post('/v1/groupies/', 'storeGroupie');
     Route::put('/v1/groupies/{userid}', 'updateGroupie');
-    // Boxies
+});
+
+Route::controller(BoxieController::class)->group(function () {
     Route::get('/v1/boxies', 'indexBoxie');
     Route::get('/v1/boxies/{groupieid}', 'showBoxie');
     Route::post('/v1/boxies/', 'storeBoxie');
     Route::put('/v1/boxies/{groupieid}', 'updateBoxie');
-    // Items
+});
+
+Route::controller(ItemController::class)->group(function () {
     Route::get('/v1/items', 'indexItem');
     Route::get('/v1/items/{boxieid}', 'showItem');
     Route::post('/v1/items/', 'storeItem');

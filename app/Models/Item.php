@@ -9,6 +9,14 @@ class Item extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id',
+        'name',
+        'owner_id',
+        'boxie_id',
+        'bestbefore'
+    ];
+
     // Your item model definition
     public function boxie()
     {

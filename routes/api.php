@@ -21,29 +21,29 @@ use Spatie\FlareClient\Api;
 */
 
 Route::controller(UserController::class)->group(function () {
-    Route::get('/v1/users/', 'indexUser');
-    Route::get('/v1/users/{id}', 'showUser');
-    Route::post('/v1/users/', 'storeUser');
-    Route::put('/v1/users/{id}', 'updateUser');
+    Route::get('/v1/users/', 'index');
+    Route::get('/v1/users/{id}', 'show');
+    Route::post('/v1/users/', 'store');
+    Route::put('/v1/users/{id}', 'update');
 } );
 
 Route::controller(GroupieController::class)->group(function () {
-    Route::get('/v1/groupies', 'indexGroupie');
-    Route::get('/v1/groupies/{userid}', 'showGroupie');
-    Route::post('/v1/groupies/', 'storeGroupie');
-    Route::put('/v1/groupies/{userid}', 'updateGroupie');
+    Route::get('/v1/groupies', 'index');
+    Route::get('/v1/groupies/{userid}', 'show');
+    Route::post('/v1/groupies/', 'store');
+    Route::put('/v1/groupies/{userid}', 'update');
 });
 
 Route::controller(BoxieController::class)->group(function () {
-    Route::get('/v1/boxies', 'indexBoxie');
-    Route::get('/v1/boxies/{groupieid}', 'showBoxie');
-    Route::post('/v1/boxies/', 'storeBoxie');
-    Route::put('/v1/boxies/{groupieid}', 'updateBoxie');
+    Route::get('/v1/boxies', 'index');
+    Route::get('/v1/boxies/{groupieid}', 'show');
+    Route::post('/v1/boxies/', 'store');
+    Route::put('/v1/boxies/{groupieid}', 'update');
 });
 
 Route::controller(ItemController::class)->group(function () {
-    Route::get('/v1/items', 'indexItem');
-    Route::get('/v1/items/{boxieid}', 'showItem');
-    Route::post('/v1/items/', 'storeItem');
-    Route::put('/v1/items/{boxieid}', 'updateItem');
+    Route::get('/v1/items', 'index');
+    Route::get('/v1/items/{boxieid}', 'show');
+    Route::post('/v1/items/', 'store');
+    Route::put('/v1/items/{boxieid}', 'update');
 });
